@@ -7,19 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'SpotifyQuiz';
-  username : string ="";
-  password : string ="";
-  show: boolean= false;
-  submit(){
-    console.log("user name is " + this.username)
-    this.clear();
-  }
-  clear(){
-    this.username ="";
-    this.password = "";
-    this.show = true;
-  }
-  signUp(){
-    
-  }
 }

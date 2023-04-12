@@ -1,0 +1,28 @@
+<mat-toolbar id="main-page-toolbar" color="primary">
+    <mat-icon>library_music</mat-icon>
+    <span>Spotify Quiz</span>
+</mat-toolbar>
+<h1><u><i>Login</i></u></h1>
+<div id="main-page-login-box">
+<form id="main-page-form" class="example-form">
+    <div>
+        <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>User Name</mat-label>
+            <input matInput placeholder="Enter your name" name="usename" [(ngModel)] ="username">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Password</mat-label>
+            <input matInput placeholder="Enter your password" value="" name="password" type="password" [(ngModel)]= "password">
+        </mat-form-field>
+    </div>
+    <div class="main-page-button-div">
+        <button mat-raised-button color="primary" class="main-page-button" (click)="submit()">Submit</button>
+    </div>  
+    <div class="main-page-button-div">  
+        <button mat-raised-button color="accent"  class="main-page-button" (click)="signUp()">SignUp</button>
+    </div>  
+    <span *ngIf="show"> <button mat-button color="accent">Login success !!</button></span>
+</form>
+</div>

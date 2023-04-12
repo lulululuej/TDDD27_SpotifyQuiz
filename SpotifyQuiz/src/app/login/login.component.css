@@ -1,11 +1,3 @@
-form {
-    border: 5px solid black;
-    border-radius: 10px 100px / 120px;
-}
-button {
-    height: 200px;
-    width: 30%;
-}
 #main-page-toolbar {
     display: flex;
     justify-content: center;
@@ -18,22 +10,20 @@ button {
     align-items:center;
     flex-direction: column;
 }
+form {
+    border: 5px solid black;
+    border-radius: 10px 100px / 120px;
+}
 .main-page-button {
     height: 50px;
     width: 100px;
     padding: 10px;
     margin: 20px;
 }
+
 .main-page-button-div {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     align-content: center;
-}
-.example-container {
-    height: 100%;
-}
-.sidebar-content {
-    display: flex;
-    flex-direction: column;
 }
