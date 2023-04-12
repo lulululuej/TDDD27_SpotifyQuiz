@@ -1,25 +1,27 @@
 <!-- sidebar -->
-<mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side">
-    <div class="sidebar-content">
-      <button mat-raised-button class="nav-item nav-link" routerLink="/">Home</button>
-      <button mat-raised-button class="nav-item nav-link" routerLink="/login">Login</button>
-      <button mat-raised-button class="nav-item nav-link" routerLink="/register">Register</button>
-    </div>
-  </mat-drawer>
-
-  <div class="example-sidenav-content">
-    <button mat-icon-button (click)="drawer.toggle()"><mat-icon>view_list</mat-icon></button>
-  </div>
-</mat-drawer-container>
-
-<!-- main content container -->
-<div class="jumbotron">
-  <div class="container">
-      <div class="row">
-          <div class="col-sm-8 offset-sm-2">
-              <router-outlet></router-outlet>
-          </div>
+<div class="main">
+  <mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+      <div class="sidebar-content">
+        <button mat-raised-button class="nav-item nav-link" routerLink="/">Home</button>
+        <button mat-raised-button class="nav-item nav-link" routerLink="/login">Login</button>
+        <button mat-raised-button class="nav-item nav-link" routerLink="/register">Register</button>
       </div>
+    </mat-drawer>
+  
+    <div class="example-sidenav-content">
+      <button mat-icon-button (click)="drawer.toggle()"><mat-icon>view_list</mat-icon></button>
+    </div>
+  </mat-drawer-container>
+  
+  <!-- main content container -->
+  <div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
   </div>
 </div>

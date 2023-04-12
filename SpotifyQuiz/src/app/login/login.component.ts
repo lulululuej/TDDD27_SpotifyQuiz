@@ -17,7 +17,4 @@ export class LoginComponent {
         this.password = "";
         this.show = true;
     }
-    signUp(){
-        
-    }
 }
