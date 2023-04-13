@@ -18,6 +18,9 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
+import { BrowseComponent } from './browse/browse.component';
+
+/* HTTP Request */
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -35,13 +38,14 @@ import { HttpClientModule } from '@angular/common/http';
         HttpClientModule,
         provideFirebaseApp(() => initializeApp(environment.firebase)),
         provideDatabase(() => getDatabase()),
-        
+        HttpClientModule
     ],
     declarations: [
         AppComponent,
         HomeComponent,
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
+        BrowseComponent
     ],
     bootstrap: [AppComponent]
 })

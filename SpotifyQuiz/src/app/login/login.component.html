@@ -4,11 +4,11 @@
 </mat-toolbar>
 <h1><u><i>Login</i></u></h1>
 <div id="main-page-login-box">
-    <form id="main-page-form" class="example-form">
+    <form #SigninForm="ngForm" id="main-page-form" class="example-form" (ngSubmit)="signIn(SigninForm.value)">
         <div>
             <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>User Name</mat-label>
-                <input matInput placeholder="Enter your name" name="usename" [(ngModel)] ="username">
+                <input matInput placeholder="Enter your name" name="username" [(ngModel)] ="username">
             </mat-form-field>
         </div>
         <div>
@@ -18,7 +18,7 @@
             </mat-form-field>
         </div>
         <div class="main-page-button-div">
-            <button mat-raised-button color="primary" class="main-page-button" (click)="submit()">Submit</button>
+            <button mat-raised-button color="primary" class="main-page-button">Submit</button>
         </div>
         <span *ngIf="show"> <button mat-button color="accent">Login success !!</button></span>
     </form>
