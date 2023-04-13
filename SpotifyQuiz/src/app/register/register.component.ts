@@ -22,5 +22,4 @@ export class RegisterComponent {
         });
         alert('User Created!');
     }
-
 }
