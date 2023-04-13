@@ -18,6 +18,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     imports: [
@@ -31,8 +32,10 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
         MatIconModule,
         FormsModule,
         MatSidenavModule,
+        HttpClientModule,
         provideFirebaseApp(() => initializeApp(environment.firebase)),
-        provideDatabase(() => getDatabase())
+        provideDatabase(() => getDatabase()),
+        
     ],
     declarations: [
         AppComponent,
