@@ -1,6 +1,7 @@
 # Import database module.
 from firebase_admin import db, credentials
 import firebase_admin
+import flask
 
 databaseURL = 'https://uppercase-0405-default-rtdb.firebaseio.com/'
 cred = credentials.Certificate("/Users/ejchow/1.LiU/TDDD27_project_spotify_quiz/SpotifyQuiz/uppercase-0405-firebase-adminsdk-cjrjy-69b469eb23.json")

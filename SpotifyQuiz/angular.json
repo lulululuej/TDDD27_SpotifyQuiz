@@ -52,7 +52,13 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -92,6 +98,16 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
             ],
             "scripts": []
+          }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "SpotifyQuiz:build:production",
+            "firebaseProject": "spotifyquiz-6d838",
+            "firebaseHostingSite": "spotifyquiz-6d838"
           }
         }
       }

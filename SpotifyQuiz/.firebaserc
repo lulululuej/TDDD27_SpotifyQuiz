@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "spotifyquiz-6d838": {
+      "hosting": {
+        "SpotifyQuiz": [
+          "spotifyquiz-6d838"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "spotifyquiz-6d838"
+  }
+}

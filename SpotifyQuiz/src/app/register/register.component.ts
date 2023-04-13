@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Database, set, ref, update } from '@angular/fire/database';
 
 @Component({ 
     templateUrl: 'register.component.html' 
@@ -8,11 +9,18 @@ export class RegisterComponent {
     email : string ="";
     password : string ="";
     show: boolean= false;
-    signup_data = {"username":this.username, "password": this.password, "email": this.email};
-    signUp(){
-        let signup_req = new XMLHttpRequest();
-        signup_req.open("POST", "/sign_up/", true);
-        signup_req.setRequestHeader("Content-type", "application/json;charset=UTF-8");
-        signup_req.send(JSON.stringify(this.signup_data));
+
+    constructor (public database: Database) {};
+
+    signUp(value: any){
+        console.log(value);
+        console.log(value.username, value.email, value.password);
+        set(ref(this.database, 'users/' + value.username), {
+            username: value.username,
+            email: value.email,
+            password : value.password
+        });
+        alert('User Created!');
     }
+
 }

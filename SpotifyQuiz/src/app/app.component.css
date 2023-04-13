@@ -6,9 +6,25 @@ button {
     height: 200px;
     width: 30%;
 }
-#main-page-toolbar {
+
+.main {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+#tool-bar-icon {
+    width: 100%;
     display: flex;
     justify-content: center;
+}
+#main-content-side {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.example-sidenav-content {
+    margin-right: 0px;
 }
 #main-page-login-box {
     width: 100%;
@@ -36,9 +52,4 @@ button {
 .sidebar-content {
     display: flex;
     flex-direction: column;
-}
-.main {
-    height: 100%;
-    display: flex;
-    flex-direction: row;
 }
