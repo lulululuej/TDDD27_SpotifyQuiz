@@ -1,6 +1,0 @@
-{
-  "devDependencies": {
-    "@types/angular": "^1.8.4",
-    "tslib": "^2.5.0"
-  }
-}
