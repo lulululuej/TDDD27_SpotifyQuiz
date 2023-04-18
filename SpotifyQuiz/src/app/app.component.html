@@ -17,9 +17,10 @@
     <mat-drawer-container class="example-container" autosize>
       <mat-drawer #drawer class="example-sidenav" mode="side">
         <div class="sidebar-content">
-          <button mat-raised-button class="nav-item nav-link" routerLink="/">Home</button>
-          <button mat-raised-button class="nav-item nav-link" routerLink="/login">Login</button>
-          <button mat-raised-button class="nav-item nav-link" routerLink="/register">Register</button>
+          <button mat-raised-button class="nav-item nav-link" routerLink="/" *ngIf="service.$home_visible | async">{{home_button}}</button>
+          <button mat-raised-button class="nav-item nav-link" routerLink="/login" *ngIf="service.$log_visible | async">{{login_button}}</button>
+          <button mat-raised-button class="nav-item nav-link" routerLink="/register" *ngIf="service.$reg_visible | async">{{register_button}}</button>
+          <button mat-raised-button class="nav-item nav-link" routerLink="/" (click)="sign_out()" *ngIf="service.$out_visible | async">{{sign_out_button}}</button>
         </div>
       </mat-drawer>
     </mat-drawer-container>

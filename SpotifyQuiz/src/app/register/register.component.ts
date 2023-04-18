@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Database, set, ref, update } from '@angular/fire/database';
+import { Router } from '@angular/router';
+
 
 @Component({ 
     templateUrl: 'register.component.html' 
@@ -10,7 +12,14 @@ export class RegisterComponent {
     password : string ="";
     show: boolean= false;
 
-    constructor (public database: Database) {};
+    constructor (
+        public database: Database,
+        private router: Router
+        ) {};
+
+    gotoBrowse(){
+        this.router.navigate(['/browse']);
+    }
 
     signUp(value: any){
         console.log(value);
@@ -21,5 +30,7 @@ export class RegisterComponent {
             password : value.password
         });
         alert('User Created!');
+        this.gotoBrowse();
+        window.sessionStorage.setItem("user", value.username);
     }
 }

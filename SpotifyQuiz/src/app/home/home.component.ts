@@ -49,7 +49,8 @@ export class HomeComponent {
                     access_token:jsonResponse["access_token"],
                     token_type:jsonResponse["token_type"],
                     expiration_time:actualTime.toISOString()
-                })
+                });
+                alert('Sporify connected until ' + actualTime);
                 //window.localStorage.setItem("spotifyToken", response)
             }
         );
