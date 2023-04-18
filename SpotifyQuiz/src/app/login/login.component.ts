@@ -29,7 +29,9 @@ export class LoginComponent {
                 alert('No such User');
             }
             else if(value.password == snapshot.val().password) {
+                console.log('go to browse ...');
                 this.gotoBrowse();
+                console.log('go to browse success!');
             }
             else {
                 alert('Password Incorrect!');
