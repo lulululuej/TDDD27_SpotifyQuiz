@@ -8,7 +8,7 @@ import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
 import { BrowseComponent } from './browse';
-import { CreateRoomDialog } from './browse';
+import { CreateRoomDialogComponent } from './browse';
 
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -57,7 +57,7 @@ import { HttpClientModule } from '@angular/common/http';
         LoginComponent,
         RegisterComponent,
         BrowseComponent,
-        CreateRoomDialog
+        CreateRoomDialogComponent
     ],
     bootstrap: [AppComponent]
 })

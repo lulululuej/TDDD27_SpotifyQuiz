@@ -7,7 +7,7 @@
 </div>
 <div dialog>
     <p>
-        <mat-checkbox [formControl]="disableSelect">Public Room</mat-checkbox>
+        <mat-checkbox [(ngModel)]="data.roomtype" [checked]="isChecked" (click)="toggle()">Public Room</mat-checkbox>
     </p>
     <p>${{disableSelect.value}}</p>
 </div>
