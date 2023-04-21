@@ -1,6 +1,8 @@
 import { Component } from "@angular/core";
 import { Database, set, ref, onValue } from '@angular/fire/database';
 import { Router } from '@angular/router';
+import { hide_show_buttons } from "../app.component";
+
 
 @Component({
     styleUrls: ['login.component.css'],
@@ -13,12 +15,14 @@ export class LoginComponent {
 
     constructor (
         public database: Database,
-        private router: Router
+        private router: Router,
+        private show_hide : hide_show_buttons,
     ) {};
     
     gotoBrowse(){
         this.router.navigate(['/browse']);
     }
+
 
     signIn(value: any){
         const userRef = ref(this.database, 'users/' + value.username);
@@ -29,9 +33,13 @@ export class LoginComponent {
                 alert('No such User');
             }
             else if(value.password == snapshot.val().password) {
-                console.log('go to browse ...');
+                window.localStorage.setItem("user", value.username);
+                this.show_hide.hide_login_button();
+                //this.show_hide.show_home_button();
+                this.show_hide.show_browse_button();
+                this.show_hide.hide_register_button();
+                this.show_hide.show_signOut_button();
                 this.gotoBrowse();
-                console.log('go to browse success!');
             }
             else {
                 alert('Password Incorrect!');
