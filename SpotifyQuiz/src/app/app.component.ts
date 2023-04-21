@@ -1,18 +1,38 @@
 import { Component, Injectable } from '@angular/core';
 import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
+
+
+//@Injectable()
+//export class LoginActivate implements CanActivate {
+
+//  constructor(
+//    private authService: AuthService, 
+//    private router: Router) {}
+
+//  canActivate(
+//    route:
+//  ) {
+//    if(!this.)
+//  }
+//}
+
 
 
 @Injectable()
 export class hide_show_buttons {
-  $log_visible: BehaviorSubject<boolean> = new BehaviorSubject(true);
+  $home_visible: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
-  $reg_visible: BehaviorSubject<boolean> = new BehaviorSubject(true);
+  $browse_visible: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  $home_visible: BehaviorSubject<boolean> = new BehaviorSubject(true);
+  $log_visible: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+  //$log_visible_obs: Observable<boolean> = this._log_visible.asObservable(); <- For the future, when observables will be used.
 
-  $out_visible: BehaviorSubject<boolean> = new BehaviorSubject(true);
+  $reg_visible: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+
+
+  $out_visible: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor() {
 
@@ -24,6 +44,14 @@ export class hide_show_buttons {
 
   public show_login_button(): void{
     this.$log_visible.next(true);
+  }
+
+  public show_browse_button(): void {
+    this.$browse_visible.next(true);
+  }
+
+  public hide_browse_button(): void {
+    this.$browse_visible.next(false);
   }
 
   public hide_register_button(): void {
@@ -53,7 +81,6 @@ export class hide_show_buttons {
   }
 }
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -82,10 +109,11 @@ export class AppComponent {
   home_button:string="Home";
 
   sign_out() {
-    window.sessionStorage.clear();
+    window.localStorage.removeItem("user");
     this.service.hide_signOut_button();
     this.service.show_login_button();
     this.service.show_register_button();
+    this.service.hide_browse_button();
     this.service.show_home_button();
     this.gotoHome();
     alert("User signed out");

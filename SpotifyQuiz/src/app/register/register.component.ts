@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Database, set, ref, update } from '@angular/fire/database';
 import { Router } from '@angular/router';
+import { hide_show_buttons } from '../app.component';
 
 
 @Component({ 
@@ -14,7 +15,8 @@ export class RegisterComponent {
 
     constructor (
         public database: Database,
-        private router: Router
+        private router: Router,
+        private show_hide : hide_show_buttons
         ) {};
 
     gotoBrowse(){
@@ -30,7 +32,12 @@ export class RegisterComponent {
             password : value.password
         });
         alert('User Created!');
+        this.show_hide.hide_login_button();
+        this.show_hide.hide_register_button();
+        this.show_hide.show_signOut_button();
+        this.show_hide.show_browse_button();
+        //this.show_hide.show_home_button();
         this.gotoBrowse();
-        window.sessionStorage.setItem("user", value.username);
+        window.localStorage.setItem("user", value.username);
     }
 }

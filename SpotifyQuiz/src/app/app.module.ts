@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { appRoutingModule } from './app.routing';
-import { AppComponent } from './app.component';
+import { AppComponent, hide_show_buttons } from './app.component';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
@@ -47,6 +47,7 @@ import { HttpClientModule } from '@angular/common/http';
         RegisterComponent,
         BrowseComponent
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    providers: [hide_show_buttons]
 })
 export class AppModule { };

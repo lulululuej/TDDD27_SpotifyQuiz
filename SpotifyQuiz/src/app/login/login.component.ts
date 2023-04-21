@@ -7,7 +7,6 @@ import { AppComponent, hide_show_buttons } from "../app.component";
 @Component({
     styleUrls: ['login.component.css'],
     templateUrl: 'login.component.html',
-    providers : [hide_show_buttons]
 })
 export class LoginComponent {
     username : string ="";
@@ -34,9 +33,10 @@ export class LoginComponent {
                 alert('No such User');
             }
             else if(value.password == snapshot.val().password) {
-                window.sessionStorage.setItem("user", value.username);
+                window.localStorage.setItem("user", value.username);
                 this.show_hide.hide_login_button();
-                this.show_hide.show_home_button();
+                //this.show_hide.show_home_button();
+                this.show_hide.show_browse_button();
                 this.show_hide.hide_register_button();
                 this.show_hide.show_signOut_button();
                 this.gotoBrowse();
