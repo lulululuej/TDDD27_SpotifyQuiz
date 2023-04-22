@@ -27,6 +27,7 @@ export class LoginComponent {
     signIn(value: any){
         const userRef = ref(this.database, 'users/' + value.username);
         console.log(value.username);
+        
         onValue(userRef, (snapshot) => {
             const data = snapshot.val();
             if(data == null) {

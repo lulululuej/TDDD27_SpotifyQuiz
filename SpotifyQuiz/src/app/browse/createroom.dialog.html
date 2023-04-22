@@ -9,9 +9,8 @@
     <p>
         <mat-checkbox [(ngModel)]="data.roomtype" [checked]="isChecked" (click)="toggle()">Public Room</mat-checkbox>
     </p>
-    <p>${{disableSelect.value}}</p>
 </div>
-<div mat-dialog-content id="">
+<div mat-dialog-content id="roomPassword">
     <mat-form-field appearance="fill">
       <mat-label>Room Password</mat-label>
       <input matInput placeholder="Enter your room password" type="password" [attr.disabled]="disableSelect.value?'':null" [(ngModel)]="data.roompassword">

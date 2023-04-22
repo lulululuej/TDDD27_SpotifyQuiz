@@ -29,6 +29,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 
 /* HTTP Request */
 import { HttpClientModule } from '@angular/common/http';
+import { RoomComponent } from './room/room.component';
 
 @NgModule({
     imports: [
@@ -57,7 +58,8 @@ import { HttpClientModule } from '@angular/common/http';
         LoginComponent,
         RegisterComponent,
         BrowseComponent,
-        CreateRoomDialogComponent
+        CreateRoomDialogComponent,
+        RoomComponent
     ],
     bootstrap: [AppComponent],
     providers: [hide_show_buttons]

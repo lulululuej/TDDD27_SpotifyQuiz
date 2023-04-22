@@ -1,1 +1,16 @@
-<button mat-raised-button class="nav-item nav-link" (click)="createRoom()">Create Room</button>
+<!-- main -->
+<div id="main">
+    <!-- Friend List -->
+    <div id="friend-list-content">
+        <button id="create-room-btn" mat-stroked-button class="nav-item nav-link" (click)="createRoom()">Create Room</button>
+    </div>
+    <!-- Browse Room -->
+    <div id="room-content">
+        <div class="room-container" *ngFor="let room of rooms">
+            <i class="fa-sharp fa-solid fa-play"></i>
+            <h1 class="room-name">{{room['roomname']}}</h1>
+            <button mat-mini-fab>Join</button>
+        </div>
+        <!-- app-room [inputFromBrowseComponent_Roomname]="room" [inputFromBrowseComponent_Roomtype]="roomtype" *ngFor="let room of rooms"></app-room -->
+    </div>
+</div>

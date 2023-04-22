@@ -1,7 +1,8 @@
-import { Component, Inject,} from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormControl } from '@angular/forms';
-import { Database, set, ref, update } from '@angular/fire/database';
+import { Database, set, ref, update, onValue, onChildChanged, onChildAdded, onChildMoved, onChildRemoved } from '@angular/fire/database';
+import { forEach } from 'angular';
 
 export interface DialogData {
   roomname: string;
@@ -23,7 +24,13 @@ export class CreateRoomDialogComponent {
   
   toggle(): void {
     this.isChecked = (this.isChecked)? false : true;
-    console.log(this.isChecked);
+    const passwordBlock = document.getElementById('roomPassword');
+    if(this.isChecked){
+      passwordBlock.style.display = 'none';
+    } 
+    else{
+      passwordBlock.style.display = 'block';
+    }
   }
 
   disableSelect = new FormControl(false);
@@ -40,20 +47,30 @@ export class CreateRoomDialogComponent {
   styleUrls: ['./browse.component.css'],
   providers: [ CreateRoomDialogComponent ]
 })
-export class BrowseComponent {
+export class BrowseComponent implements OnInit {
   roomname: string = "";
   roomtype!: boolean;
   roompassword: string = "";
+  htmlToAdd: string;
+  rooms: string[];
   
   constructor(
     public dialog: MatDialog,
-    public database: Database,
-  ) {};
+    public database: Database
+  ) {}
   
-  receiveMessage(event) {
-    console.log(event);
-    this.roomtype = event;
-  }
+  ngOnInit(): void {
+    const userRef = ref(this.database, 'rooms/');
+    const roomcontainer = document.getElementById('room-content');
+
+    onValue(userRef, (snapshotChanges) => {
+      this.rooms = Object.values(snapshotChanges.val());
+      /*this.rooms.forEach(function(value) {
+        console.log(value);
+        roomcontainer.insertAdjacentHTML('beforeend','<app-room [inputFromBrowseComponent_Roomname]="roomname" [inputFromBrowseComponent_Roomtype]="roomtype"></app-room>');
+      });*/
+    })
+  };
 
   createRoom(): void {
     const dialogRef = this.dialog.open(CreateRoomDialogComponent, {
@@ -64,14 +81,19 @@ export class BrowseComponent {
       this.roomname = result.roomname;
       this.roomtype = result.roomtype;
       this.roompassword = result.roompassword;
-      /*set(ref(this.database, 'rooms/' + result.roomname), {
+      let user = '';
+      if (localStorage.hasOwnProperty("user")) {
+        user = localStorage.getItem("user");
+      }
+      console.log(user);
+      set(ref(this.database, 'rooms/' + result.roomname), {
         roomname: result.roomname,
-        private: result.roomtype,
-        password: result.roompassword
+        public: result.roomtype,
+        password: result.roompassword,
+        owner: user
       });
-      alert('Room Created!');*/
-
+      //alert('Room Created!');
     });
-  }
+  }  
 
 }

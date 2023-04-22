@@ -1,0 +1,29 @@
+#main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+#friend-list-content {
+    width: 15%;
+    height: 100%;
+}
+
+#room-content {
+    width: 85%;
+    height: 100%;
+}
+.room-container {
+    width: 300px;
+    height: 200px;
+    border-style: dashed;
+    border-radius: 10px;
+    border-color: black;
+    margin: 10px;
+}
+.room-name {
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-weight: bolder;
+    text-align: center;
+}
