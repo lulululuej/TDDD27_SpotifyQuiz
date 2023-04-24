@@ -9,7 +9,7 @@
         <div class="room-container" *ngFor="let room of rooms">
             <i class="fa-sharp fa-solid fa-play"></i>
             <h1 class="room-name">{{room['roomname']}}</h1>
-            <button mat-mini-fab>Join</button>
+            <button mat-mini-fab (click)="enterRoom(room['roomname'])">Join</button>
         </div>
         <!-- app-room [inputFromBrowseComponent_Roomname]="room" [inputFromBrowseComponent_Roomtype]="roomtype" *ngFor="let room of rooms"></app-room -->
     </div>

@@ -1,8 +1,8 @@
 import { Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormControl } from '@angular/forms';
-import { Database, set, ref, update, onValue, onChildChanged, onChildAdded, onChildMoved, onChildRemoved } from '@angular/fire/database';
-import { forEach } from 'angular';
+import { Database, set, ref, update, push, onValue, onChildChanged, onChildAdded, onChildMoved, onChildRemoved } from '@angular/fire/database';
+import { Router, ActivatedRoute } from '@angular/router';
 
 export interface DialogData {
   roomname: string;
@@ -56,7 +56,8 @@ export class BrowseComponent implements OnInit {
   
   constructor(
     public dialog: MatDialog,
-    public database: Database
+    public database: Database,
+    private router: Router,
   ) {}
   
   ngOnInit(): void {
@@ -78,6 +79,9 @@ export class BrowseComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result.roomname}, ${result.roomtype}, ${result.roompassword}`);
+      if(result.roomtype) {
+        result.roompassword = null;
+      }
       this.roomname = result.roomname;
       this.roomtype = result.roomtype;
       this.roompassword = result.roompassword;
@@ -85,15 +89,24 @@ export class BrowseComponent implements OnInit {
       if (localStorage.hasOwnProperty("user")) {
         user = localStorage.getItem("user");
       }
-      console.log(user);
-      set(ref(this.database, 'rooms/' + result.roomname), {
+
+      set(push(ref(this.database, 'rooms/')), {
         roomname: result.roomname,
         public: result.roomtype,
         password: result.roompassword,
         owner: user
       });
+      
+      
       //alert('Room Created!');
     });
   }  
+
+  enterRoom(roomname): void {
+    console.log(roomname);
+    //this.router.navigate(['/room',roomname]);
+    //this.router.navigate(['/room' + roomname]);
+    this.router.navigateByUrl('/room', { state: { id:1 , name: roomname } });
+  }
 
 }

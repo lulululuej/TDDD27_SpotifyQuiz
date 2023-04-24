@@ -1,5 +1,17 @@
 <div class="main">
-    <h1>{{inputFromBrowseComponent_Roomname}}</h1>
-    <h2>{{inputFromBrowseComponent_Roomtype}}</h2>
-    <button>Join</button>
+    <h1 id="roomname">{{roomname}}</h1>
+    <div class="container">
+        <div id="user-container">
+            <h2>Room member</h2>
+        </div>
+        <div id="song-container">
+            <h2>The songs you pick</h2>
+        </div>
+        <div id="search-container">
+            <mat-form-field>
+                <input matInput placeholder="Search">
+            </mat-form-field>
+            <div id="search-song-container"></div>
+        </div>
+    </div>
 </div>

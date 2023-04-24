@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { Database, set, ref, onValue } from '@angular/fire/database';
 import { Router } from '@angular/router';
 import { hide_show_buttons } from "../app.component";
-
+import { getAuth, setPersistence, signInWithEmailAndPassword, browserSessionPersistence } from "firebase/auth";
 
 @Component({
     styleUrls: ['login.component.css'],
@@ -18,6 +18,8 @@ export class LoginComponent {
         private router: Router,
         private show_hide : hide_show_buttons,
     ) {};
+
+    
     
     gotoBrowse(){
         this.router.navigate(['/browse']);
