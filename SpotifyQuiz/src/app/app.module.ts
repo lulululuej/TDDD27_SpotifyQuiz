@@ -20,9 +20,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
+
+/* Firebase */
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
+import { getAuth, createUserWithEmailAndPassword } from "@angular/fire/auth";
 
 import {MatDialogModule} from '@angular/material/dialog';
 

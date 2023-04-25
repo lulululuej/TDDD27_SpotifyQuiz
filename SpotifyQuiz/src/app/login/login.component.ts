@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { Database, set, ref, onValue } from '@angular/fire/database';
 import { Router } from '@angular/router';
 import { hide_show_buttons } from "../app.component";
-import { getAuth, setPersistence, signInWithEmailAndPassword, browserSessionPersistence } from "firebase/auth";
+
 
 @Component({
     styleUrls: ['login.component.css'],
@@ -27,16 +27,41 @@ export class LoginComponent {
 
 
     signIn(value: any){
-        const userRef = ref(this.database, 'users/' + value.username);
+       // const userRef = ref(this.database, 'users/' + value.username);
         console.log(value.username);
-        
+        const auth = getAuth();
+        const user = auth.currentUser;
+        if (user) {
+            console.log(user);
+            alert("user " + user.email + " is already logged in in another tab");
+        } else {
+            console.log("No user is logged in");
+            signInWithEmailAndPassword(auth, value.email, value.password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                console.log(user);
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log("Login error, code " + errorCode);
+                console.log(errorMessage);
+            })
+
+        }
+        /*
         onValue(userRef, (snapshot) => {
             const data = snapshot.val();
+            
             if(data == null) {
                 alert('No such User');
             }
             else if(value.password == snapshot.val().password) {
                 window.localStorage.setItem("user", value.username);
+
+                
+                
+                
                 this.show_hide.hide_login_button();
                 //this.show_hide.show_home_button();
                 this.show_hide.show_browse_button();
@@ -47,8 +72,9 @@ export class LoginComponent {
             else {
                 alert('Password Incorrect!');
             }
-        });
+        });*/
     }
+
     clear(){
         this.username ="";
         this.password = "";

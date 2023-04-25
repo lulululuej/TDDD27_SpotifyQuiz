@@ -2,6 +2,7 @@ import { Component, Injectable } from '@angular/core';
 import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { getAuth, signOut, onAuthStateChanged, Auth } from "@angular/fire/auth"
 
 
 //@Injectable()
@@ -108,8 +109,25 @@ export class AppComponent {
   
   home_button:string="Home";
 
+
+/*
+  checkLoggedIn() {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => )
+  }
+*/
   sign_out() {
     window.localStorage.removeItem("user");
+
+    const auth = getAuth();
+    signOut(auth).then(() => {
+
+    }).catch((error) => {
+      const errorCode = error.code;
+      const errorMessage  = error.message;
+      console.log(errorMessage);
+    })
+
     this.service.hide_signOut_button();
     this.service.show_login_button();
     this.service.show_register_button();
